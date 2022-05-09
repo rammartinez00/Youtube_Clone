@@ -1,5 +1,6 @@
 # 🎥 Netflix Clone 🎥
 
+This Netflix clone will be a pixel perfect clone of [Netflix](Netflix.com)
 
 ## Getting started
 1. Clone this repository (only this branch)
