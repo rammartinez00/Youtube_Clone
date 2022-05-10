@@ -1,0 +1,12 @@
+.navlinks {
+  display: flex;
+  list-style: none;
+}
+
+.navlinks > li {
+  margin: 5px;
+}
+body {
+  background-color: #212121;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+}

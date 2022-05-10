@@ -1,0 +1,125 @@
+.modal-form-container {
+  padding: 24px 24px 36px;
+  background-color: rgb(24, 26, 27);
+  border: 1px solid gray;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: auto;
+  min-width: 350px;
+  height: auto;
+  min-height: 350px;
+  color: white;
+  font-weight: 400;
+}
+
+.sign-in {
+  margin: 0px;
+  padding-top: 16px;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: "Google Sans", "Noto Sans Myanmar UI", arial, sans-serif;
+}
+
+.msg {
+  margin: 0px;
+  padding-top: 16px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1.5;
+  font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+}
+
+.login-container {
+  padding-top: 16px;
+  /* margin: 3%; */
+}
+
+.modal-btn {
+  margin: 2%;
+  margin-top: 5%;
+  font-size: 14px;
+  color: white;
+  background-color: #1a73e8;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.demo-btn {
+  font-size: 14px;
+  color: #1a73e8;
+  background-color: rgb(24, 26, 27);
+  text-decoration: none;
+  padding: 5px 15px;
+  border: none;
+  font-weight: bold;
+}
+
+.login-btns {
+  padding-top: 16px;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 300px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-input {
+  /* padding-left: 10px; */
+  border: 1px solid gray;
+  border-radius: 5px;
+  transition: all 0.5s;
+  /* outline: none; */
+  padding: 10px;
+}
+.login-input:focus {
+  /* padding: 2px; */
+  border: 1px solid blue;
+  border-radius: 2px;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.login-email:focus {
+  border: 3px solid black;
+  border-radius: 20px;
+  outline: none;
+  cursor: text;
+}
+
+.login-password:focus {
+  border: 3px solid black;
+  border-radius: 20px;
+  outline: none;
+  cursor: text;
+}
+
+.login-email:hover {
+  cursor: pointer;
+}
+
+.login-password:hover {
+  cursor: pointer;
+}
+
+.errors2 {
+  text-align: center;
+  color: red;
+  list-style: none;
+  padding-left: 0px;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 5px 11px;
+  border: 1px solid #3ea6ff;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #3ea6ff;
+  background-color: transparent;
+}

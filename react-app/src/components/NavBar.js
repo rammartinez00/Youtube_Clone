@@ -1,29 +1,30 @@
-
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import LogoutButton from "./auth/LogoutButton";
+import LoginFormModal from "./LoginFormModal/index.js";
+import Logo from "../img/yt_logo_rgb_dark.png";
 
 const NavBar = () => {
   return (
     <nav>
-      <ul>
+      <ul className="navlinks">
         <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
+          <NavLink to="/" exact={true} activeClassName="active">
+            <img
+              className="homeLogo"
+              src={Logo}
+              alt="logo"
+              width={90}
+              height={20}
+            />
           </NavLink>
         </li>
         <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
+          <LoginFormModal />
         </li>
+
         <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
+          <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
         </li>
@@ -33,6 +34,6 @@ const NavBar = () => {
       </ul>
     </nav>
   );
-}
+};
 
 export default NavBar;
