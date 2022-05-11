@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { getVideoById } from "../../store/videos";
 import { getAllComments } from "../../store/comments";
+
+import NewCommentForm from "../NewComment";
 // import "./index.css";
 
 const VideoPage = () => {
@@ -15,6 +17,8 @@ const VideoPage = () => {
   const comments = useSelector((state) => state.comments);
   const video = videos[id];
   const commentsArr = Object.values(comments);
+
+  const user = useSelector((state) => state.session.user);
   console.log(commentsArr);
 
   useEffect(() => {
@@ -37,6 +41,8 @@ const VideoPage = () => {
           </div>
           <div className="comments-section">
             <h1>Comments</h1>
+            {user && <NewCommentForm />}
+            {/* <NewCommentForm /> */}
             {commentsArr.map((comment) => (
               <div className="comment-container" key={comment.id}>
                 <div className="comment-container-1">
