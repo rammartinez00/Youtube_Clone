@@ -19,18 +19,16 @@ const Landing = () => {
 
   return (
     <div>
-      <div className="landing-content-box">
-        <div className="landing-content-box-1-container"></div>
+      <div className="landing-content-box-1-container">
         {videoArr.map((video) => (
           <div className="landing-content-box-1" key={video.id}>
             <NavLink to={`/videos/${video.id}`}>
               <img
+                className="landing-content-box-1-img"
                 src={video.thumbnail}
                 alt={video.title}
-                height={200}
-                width={300}
               />
-              <h1>{video.title}</h1>
+              <p className="vid-title">{video.title}</p>
             </NavLink>
           </div>
         ))}
