@@ -22,7 +22,6 @@ const NavBar = () => {
         <li>
           <LoginFormModal />
         </li>
-
         <li>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users

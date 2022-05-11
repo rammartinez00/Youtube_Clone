@@ -1,6 +1,6 @@
 from .db import db
 from sqlalchemy import ForeignKey
-import datetime
+from sqlalchemy.sql import func
 
 
 class Comment(db.Model):
@@ -10,10 +10,13 @@ class Comment(db.Model):
     videoId = db.Column(db.Integer, ForeignKey('videos.id'), nullable=False)
     userId = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
     comment = db.Column(db.Text)
-    created_at = db.Column('created_at', db.DateTime,
-                           default=datetime.datetime.now, nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True),
+                           default=func.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True),
-                           onupdate=datetime.datetime.now)
+                           onupdate=func.now(), default=func.now())
+
+    user = db.relationship('User', back_populates='comments')
+    video = db.relationship('Video', back_populates='comments')
 
     def comment_to_dict(self):
         return {

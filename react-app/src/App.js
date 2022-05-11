@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./store/session";
 import Landing from "./components/landing";
+import VideoPage from "./components/VideoPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -31,6 +32,9 @@ function App() {
       <Switch>
         <Route path="/" exact={true}>
           <Landing />
+        </Route>
+        <Route path="/videos/:id">
+          <VideoPage />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm />

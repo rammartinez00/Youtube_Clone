@@ -12,3 +12,7 @@ class Playlist(db.Model):
                            default=datetime.datetime.now, nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True),
                            onupdate=datetime.datetime.now)
+
+
+    user = db.relationship('User', back_populates='playlist')
+    videos = db.relationship('VideoPlaylist', back_populates='playlist')

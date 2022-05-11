@@ -1,6 +1,7 @@
 from .db import db
 from sqlalchemy import ForeignKey
 import datetime
+from sqlalchemy.sql import func
 
 
 class Video(db.Model):
@@ -11,10 +12,15 @@ class Video(db.Model):
     title = db.Column(db.String(255), nullable=False)
     about = db.Column(db.Text)
     video = db.Column(db.String(255), nullable=False)
-    created_at = db.Column('created_at', db.DateTime,
-                           default=datetime.datetime.now, nullable=False)
+    thumbnail = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime(timezone=True),
+                           default=func.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True),
-                           onupdate=datetime.datetime.now)
+                           onupdate=func.now(), default=func.now())
+
+    user = db.relationship('User', back_populates='videos')
+    comments = db.relationship('Comment', back_populates='video', cascade='all, delete')
+    playlists = db.relationship('VideoPlaylist', back_populates='video', cascade='all, delete')
 
     def video_to_dict(self):
         return {
@@ -23,6 +29,7 @@ class Video(db.Model):
             'title': self.title,
             'about': self.about,
             'video': self.video,
+            'thumbnail': self.thumbnail,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

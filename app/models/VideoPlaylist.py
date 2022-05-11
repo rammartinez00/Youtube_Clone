@@ -9,3 +9,6 @@ class VideoPlaylist(db.Model):
     videoId = db.Column(db.Integer, ForeignKey('videos.id'), nullable=False)
     playlistId = db.Column(db.Integer, ForeignKey(
         'playlists.id'), nullable=False)
+
+    video = db.relationship('Video', back_populates='playlists')
+    playlist = db.relationship('Playlist', back_populates='videos')
