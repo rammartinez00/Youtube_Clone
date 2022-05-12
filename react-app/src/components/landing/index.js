@@ -15,7 +15,7 @@ const Landing = () => {
     dispatch(getAllVideos());
   }, [dispatch]);
 
-  console.log(videoArr);
+  // console.log(videoArr);
 
   return (
     <div>

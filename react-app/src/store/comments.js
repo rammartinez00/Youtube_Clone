@@ -17,6 +17,20 @@ const postComment = (comment) => {
   };
 };
 
+const putComment = (comment) => {
+  return {
+    type: PUT_COMMENT,
+    payload: comment,
+  };
+};
+
+const deleteComment = (id) => {
+  return {
+    type: DEL_COMMENT,
+    payload: id,
+  };
+};
+
 export const getAllComments = (id) => async (dispatch) => {
   const response = await fetch(`/api/comments/${id}`);
   if (response.ok) {
@@ -41,6 +55,31 @@ export const postNewComment = (id, comment) => async (dispatch) => {
   }
 };
 
+export const updateComment = (comment) => async (dispatch) => {
+  const response = await fetch(`/api/comments/update/${comment.id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+  if (response.ok) {
+    const newComment = await response.json();
+    dispatch(putComment(newComment));
+    return response;
+  }
+};
+
+export const deleteAComment = (id) => async (dispatch) => {
+  const response = await fetch(`/api/comments/delete/${id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    dispatch(deleteComment(id));
+    return response;
+  }
+};
+
 const commentReducer = (state = [], action) => {
   let newState;
   switch (action.type) {
@@ -53,6 +92,14 @@ const commentReducer = (state = [], action) => {
     case POST_COMMENT:
       newState = { ...state };
       newState[action.payload.id] = action.payload;
+      return newState;
+    case PUT_COMMENT:
+      newState = { ...state };
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case DEL_COMMENT:
+      newState = { ...state };
+      delete newState[action.payload];
       return newState;
     default:
       return state;

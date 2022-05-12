@@ -9,6 +9,7 @@
 body {
   background-color: #212121;
   font-family: "Google Sans", Roboto, Arial, sans-serif;
+  color: white;
 }
 
 .landing-content-box-1 {
@@ -38,4 +39,8 @@ body {
   /* font-size: 20px;
   font-weight: bold; */
   /* margin-bottom: 40px; */
+}
+
+.NavLink:link {
+  color: white;
 }
