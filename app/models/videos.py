@@ -9,10 +9,10 @@ class Video(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, ForeignKey('users.id'), nullable=False)
-    title = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(255), nullable=True)
     about = db.Column(db.Text)
     video = db.Column(db.String(255), nullable=False)
-    thumbnail = db.Column(db.String(255), nullable=False)
+    thumbnail = db.Column(db.String(255), nullable=True)
     created_at = db.Column(db.DateTime(timezone=True),
                            default=func.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True),
