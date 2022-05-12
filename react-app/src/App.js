@@ -10,6 +10,7 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import Landing from "./components/landing";
 import VideoPage from "./components/VideoPage";
+import UploadVideo from "./components/VideoUpload";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,6 +43,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path="/upload" exact={true}>
+          <UploadVideo />
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>
