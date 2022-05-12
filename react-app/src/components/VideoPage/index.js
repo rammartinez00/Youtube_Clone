@@ -48,10 +48,10 @@ const VideoPage = () => {
             <h1>Comments</h1>
             {user && <NewCommentForm />}
             {/* <NewCommentForm /> */}
-            {commentsArr.map((comment) => (
+            {commentsArr?.map((comment) => (
               <div className="comment-container" key={comment.id}>
                 <div className="comment-container-1">
-                  {comment.userId === user.id && (
+                  {comment?.userId === user?.id && (
                     <>
                       <EditCommentForm comments={comment} />
                       <button
@@ -66,7 +66,7 @@ const VideoPage = () => {
                   )}
                   {/* <EditCommentForm comment={comment} /> */}
                   <p>{comment?.comment}</p>
-                  <p>{comment.updated_at}</p>
+                  <p>{comment?.updated_at}</p>
                 </div>
               </div>
             ))}
