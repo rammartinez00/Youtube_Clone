@@ -22,16 +22,23 @@ const NavBar = () => {
         <li>
           <LoginFormModal />
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <LogoutButton />
         </li>
         <li>
-          <NavLink to="/upload" exact={true} activeClassName="active"></NavLink>
+          <NavLink
+            to="/upload"
+            exact={true}
+            activeClassName="active"
+            className="vid-title"
+          >
+            Upload
+          </NavLink>
         </li>
       </ul>
     </nav>

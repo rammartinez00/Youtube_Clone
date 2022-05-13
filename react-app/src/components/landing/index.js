@@ -29,10 +29,10 @@ const Landing = () => {
           <div className="landing-content-box-1" key={video.id}>
             <NavLink to={`/videos/${video.id}`}>
               <ReactPlayer
+                width="100%"
+                height="100%"
                 className="landing-content-box-1-img"
                 url={video?.video}
-                // controls={true}
-                // light={video?.thumbnail}
                 style={vidStyle}
               />
             </NavLink>
