@@ -1,36 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { postVideoAction } from "../../store/videos";
+
 const UploadVideo = () => {
-  const history = useHistory(); // so that we can redirect after the image upload is successful
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [video, setVideo] = useState(null);
+  const [title, setTitle] = useState("");
+  const [about, setAbout] = useState("");
   const [videoLoading, setVideoLoading] = useState(false);
+  const [validationErrors, setValidationErrors] = useState([]);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
+
+  useEffect(() => {
+    const errors = [];
+    if (!title) {
+      errors.push("Title is required");
+    }
+    if (!about) {
+      errors.push("About is required");
+    }
+    if (!video) {
+      errors.push("Video is required");
+    }
+    setValidationErrors(errors);
+  }, [title, about, video]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("file", video);
-
-    // aws uploads can be a bit slow—displaying
-    // some sort of loading message is a good idea
     setVideoLoading(true);
+    setHasSubmitted(true);
+    setShowErrors(true);
 
-    const res = await fetch("/api/videos/upload", {
-      method: "POST",
-      body: formData,
-    });
-    if (res.ok) {
-      await res.json();
-      setVideoLoading(false);
-      history.push("/");
-    } else {
-      setVideoLoading(false);
-      // a real app would probably use more advanced
-      // error handling
-      console.log("error");
-    }
+    const videoData = {
+      title,
+      about,
+      video,
+    };
+
+    // if (validationErrors.length === 0) {
+    await dispatch(postVideoAction(videoData));
+    history.push("/");
+    //   setAbout("");
+    //   setTitle("");
+    //   setVideo(null);
+    //   setVideoLoading(false);
+    //   setHasSubmitted(false);
+    //   setShowErrors(false);
+    // }
   };
-
   const updateVideo = (e) => {
     const file = e.target.files[0];
     setVideo(file);
@@ -38,8 +59,27 @@ const UploadVideo = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <input></input> */}
-      <input type="file" accept="file/*" onChange={updateVideo} />
+      <div>
+        {showErrors && (
+          <ul className="errors">
+            {validationErrors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <input
+        type="text"
+        name="title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <textarea
+        name="about"
+        value={about}
+        onChange={(e) => setAbout(e.target.value)}
+      />
+      <input type="file" name="file" onChange={updateVideo} />
       <button type="submit">Submit</button>
       {videoLoading && <p>Loading...</p>}
     </form>

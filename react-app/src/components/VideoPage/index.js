@@ -38,7 +38,11 @@ const VideoPage = () => {
       <div className="video-page-container">
         <div className="video-page-container-1">
           <div className="video-page-container-1-1">
-            <ReactPlayer url={video?.video} controls={true} />
+            <ReactPlayer
+              url={video?.video}
+              controls={true}
+              light={video?.thumbnail}
+            />
           </div>
           <div className="video-page-container-1-2">
             <h1>{video?.title}</h1>

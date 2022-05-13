@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./index.css";
 import { getAllVideos } from "../../store/videos";
+import ReactPlayer from "react-player";
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,10 @@ const Landing = () => {
     dispatch(getAllVideos());
   }, [dispatch]);
 
+  const vidStyle = {
+    width: 100,
+    height: 100,
+  };
   // console.log(videoArr);
 
   return (
@@ -23,13 +28,17 @@ const Landing = () => {
         {videoArr.map((video) => (
           <div className="landing-content-box-1" key={video.id}>
             <NavLink to={`/videos/${video.id}`}>
-              <img
+              <ReactPlayer
                 className="landing-content-box-1-img"
-                src={video.thumbnail}
-                alt={video.title}
+                url={video?.video}
+                // controls={true}
+                // light={video?.thumbnail}
+                style={vidStyle}
               />
-              <p className="vid-title">{video.title}</p>
             </NavLink>
+            <a className="vid-title" href={`/videos/${video.id}`}>
+              <p className="vid-title">{video.title}</p>
+            </a>
           </div>
         ))}
       </div>

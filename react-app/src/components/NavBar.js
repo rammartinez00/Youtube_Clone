@@ -30,6 +30,9 @@ const NavBar = () => {
         <li>
           <LogoutButton />
         </li>
+        <li>
+          <NavLink to="/upload" exact={true} activeClassName="active"></NavLink>
+        </li>
       </ul>
     </nav>
   );
