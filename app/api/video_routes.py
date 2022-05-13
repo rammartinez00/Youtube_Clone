@@ -51,4 +51,15 @@ def upload():
         db.session.commit()
         return new_file.video_to_dict()
     return jsonify({'errors': form.errors}), 400
+
+
+@video_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete(id):
+    video = Video.query.get(id)
+    if video.userId == current_user.to_dict()['id']:
+        db.session.delete(video)
+        db.session.commit()
+        return jsonify({'message': 'Video deleted'})
+    return {'message': 'You are not authorized to delete this video'}
     

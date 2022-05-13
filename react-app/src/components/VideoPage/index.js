@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import ReactPlayer from "react-player";
-import { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
-import { getVideoById } from "../../store/videos";
+import { useEffect, useState } from "react";
+import { NavLink, useParams, useHistory } from "react-router-dom";
+import { getVideoById, deleteAVideo, getAllVideos } from "../../store/videos";
 import { getAllComments, deleteAComment } from "../../store/comments";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 import NewCommentForm from "../NewComment";
 import EditCommentForm from "../EditComment";
@@ -11,7 +14,13 @@ import EditCommentForm from "../EditComment";
 
 const VideoPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
+
+  const [shown, setShown] = useState(false);
+  const [editShown, setEditShown] = useState(false);
+  const [deleteShown, setDeleteShown] = useState(false);
+  const [update, setUpdate] = useState(false);
   // console.log(id);
 
   const videos = useSelector((state) => state.videos);
@@ -25,13 +34,8 @@ const VideoPage = () => {
   useEffect(() => {
     dispatch(getVideoById(id));
     dispatch(getAllComments(id));
-  }, [dispatch]);
-
-  // const deleteComment = (id) => {
-  //   dispatch(deleteComment(id));
-  // };
-
-  // console.log(video);
+    dispatch(getAllVideos());
+  }, [dispatch, update]);
 
   return (
     <div>
@@ -46,7 +50,29 @@ const VideoPage = () => {
           </div>
           <div className="video-page-container-1-2">
             <h1>{video?.title}</h1>
-            <h2>{video?.about}</h2>
+            <button
+              onClick={() => {
+                setShown(!shown);
+              }}
+            >
+              {shown ? "show less" : "show more"}
+            </button>
+            {shown && (
+              <div>
+                <h2>{video?.about}</h2>
+                {user?.id == video?.userId && (
+                  <button
+                    onClick={() => {
+                      dispatch(deleteAVideo(video?.id));
+                      setUpdate(!update);
+                      history.push("/");
+                    }}
+                  >
+                    Delete Video
+                  </button>
+                )}
+              </div>
+            )}
           </div>
           <div className="comments-section">
             <h1>Comments</h1>
@@ -57,15 +83,31 @@ const VideoPage = () => {
                 <div className="comment-container-1">
                   {comment?.userId === user?.id && (
                     <>
-                      <EditCommentForm comments={comment} />
                       <button
                         onClick={() => {
-                          dispatch(deleteAComment(comment.id));
-                          dispatch(getAllComments(id));
+                          setEditShown(!editShown);
                         }}
                       >
-                        Delete Comment
+                        <FontAwesomeIcon icon={faPen} />
                       </button>
+                      {editShown && <EditCommentForm comments={comment} />}
+                      <button
+                        onClick={() => {
+                          setDeleteShown(!deleteShown);
+                        }}
+                      >
+                        <i className="fa-solid fa-trash-can"></i>
+                      </button>
+                      {deleteShown && (
+                        <button
+                          onClick={() => {
+                            dispatch(deleteAComment(comment.id));
+                            dispatch(getAllComments(id));
+                          }}
+                        >
+                          Delete Comment
+                        </button>
+                      )}
                     </>
                   )}
                   {/* <EditCommentForm comment={comment} /> */}

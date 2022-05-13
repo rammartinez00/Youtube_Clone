@@ -1,6 +1,8 @@
 const GET_VIDEOS = "videos/GET_VIDEOS";
 const GET_VIDEO = "video/GET_VIDEO";
 const POST_VIDEO = "video/POST_VIDEO";
+const UPDATE_VIDEO = "video/UPDATE_VIDEO";
+const DELETE_VIDEO = "video/DELETE_VIDEO";
 
 const getVideos = (videos) => {
   return {
@@ -19,6 +21,20 @@ const getVideo = (video) => {
 const postVideo = (video) => {
   return {
     type: POST_VIDEO,
+    video,
+  };
+};
+
+const updateVideo = (video) => {
+  return {
+    type: UPDATE_VIDEO,
+    video,
+  };
+};
+
+const deleteVideo = (video) => {
+  return {
+    type: DELETE_VIDEO,
     video,
   };
 };
@@ -64,6 +80,17 @@ export const postVideoAction = (videostuff) => async (dispatch) => {
   }
 };
 
+export const deleteAVideo = (id) => async (dispatch) => {
+  const response = await fetch(`/api/videos/${id}/delete`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(deleteVideo(data));
+    return response;
+  }
+};
+
 const videoReducer = (state = [], action) => {
   let newState;
   switch (action.type) {
@@ -81,6 +108,14 @@ const videoReducer = (state = [], action) => {
     case POST_VIDEO:
       newState = { ...state };
       newState[action.video.video.id] = action.video.video;
+      return newState;
+    case UPDATE_VIDEO:
+      newState = { ...state };
+      newState[action.video.id] = action.video;
+      return newState;
+    case DELETE_VIDEO:
+      newState = { ...state };
+      delete newState[action.video.video.id];
       return newState;
     default:
       return state;

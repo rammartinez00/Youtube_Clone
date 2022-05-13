@@ -34,6 +34,7 @@ const Landing = () => {
                 className="landing-content-box-1-img"
                 url={video?.video}
                 style={vidStyle}
+                // light={true}
               />
             </NavLink>
             <a className="vid-title" href={`/videos/${video.id}`}>
