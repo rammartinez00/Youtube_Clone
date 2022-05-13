@@ -80,6 +80,21 @@ export const postVideoAction = (videostuff) => async (dispatch) => {
   }
 };
 
+export const updateAVideo = (video) => async (dispatch) => {
+  const response = await fetch(`/api/videos/${video.id}/update`, {
+    method: "PUT",
+    body: JSON.stringify(video),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateVideo(data));
+    return response;
+  }
+};
+
 export const deleteAVideo = (id) => async (dispatch) => {
   const response = await fetch(`/api/videos/${id}/delete`, {
     method: "DELETE",
@@ -111,7 +126,7 @@ const videoReducer = (state = [], action) => {
       return newState;
     case UPDATE_VIDEO:
       newState = { ...state };
-      newState[action.video.id] = action.video;
+      newState[action.video.video.id] = action.video.video;
       return newState;
     case DELETE_VIDEO:
       newState = { ...state };

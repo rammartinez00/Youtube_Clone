@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useParams, useHistory } from "react-router-dom";
 import { getVideoById, deleteAVideo, getAllVideos } from "../../store/videos";
 import { getAllComments, deleteAComment } from "../../store/comments";
+import EditVideoModal from "../VideoEdit";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
@@ -61,15 +62,18 @@ const VideoPage = () => {
               <div>
                 <h2>{video?.about}</h2>
                 {user?.id == video?.userId && (
-                  <button
-                    onClick={() => {
-                      dispatch(deleteAVideo(video?.id));
-                      setUpdate(!update);
-                      history.push("/");
-                    }}
-                  >
-                    Delete Video
-                  </button>
+                  <div>
+                    <EditVideoModal />
+                    <button
+                      onClick={() => {
+                        dispatch(deleteAVideo(video?.id));
+                        setUpdate(!update);
+                        history.push("/");
+                      }}
+                    >
+                      Delete Video
+                    </button>
+                  </div>
                 )}
               </div>
             )}

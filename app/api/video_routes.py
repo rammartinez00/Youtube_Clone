@@ -52,6 +52,22 @@ def upload():
         return new_file.video_to_dict()
     return jsonify({'errors': form.errors}), 400
 
+@video_routes.route('/<int:id>/update', methods=['PUT'])
+@login_required
+def update(id):
+    video = Video.query.get(id)
+    if video.userId != current_user.to_dict()['id']:
+        return jsonify({'errors': 'Not authorized'}), 401
+    form = VideoForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        video.title = form.title.data
+        video.about = form.about.data
+        db.session.add(video)
+        db.session.commit()
+        return video.video_to_dict()
+    return jsonify({'errors': form.errors}), 400
+
 
 @video_routes.route('/<int:id>/delete', methods=['DELETE'])
 @login_required
