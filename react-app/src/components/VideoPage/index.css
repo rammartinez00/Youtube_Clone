@@ -1,0 +1,17 @@
+.video-page-container-1 {
+  padding-left: 50px;
+  padding-top: 20px;
+}
+
+.vid-title-info {
+  border-bottom: 2px solid #2f2f2f;
+  /* background-color: blue; */
+  width: 700px;
+}
+
+.about-button {
+  background-color: #212121;
+  color: white;
+  border: none;
+  font-size: 14px;
+}

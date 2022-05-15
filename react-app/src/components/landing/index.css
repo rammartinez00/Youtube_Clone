@@ -1,6 +1,10 @@
 .navlinks {
   display: flex;
   list-style: none;
+  margin: 0;
+  background-color: #2f2f2f;
+  padding: 10px;
+  padding-left: 20px;
 }
 
 .navlinks > li {
@@ -10,6 +14,7 @@ body {
   background-color: #212121;
   font-family: "Google Sans", Roboto, Arial, sans-serif;
   color: white;
+  margin: 0;
 }
 
 .landing-content-box-1 {
@@ -26,6 +31,7 @@ body {
   /* object-fit: contain; */
 }
 .landing-content-box-1-container {
+  margin-left: 100px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -38,8 +44,81 @@ body {
 .vid-title {
   color: white;
   text-decoration: none;
+  margin-top: 0;
 }
 
 .NavLink:link {
   color: white;
+}
+
+.sideBar {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 28px;
+  bottom: 0;
+  padding-top: 5px;
+  padding-left: 5px;
+  background-color: #2f2f2f;
+  text-align: center;
+}
+
+.sideBar-link {
+  color: white;
+  text-decoration: none;
+  margin-top: 0;
+  font-size: 12px;
+}
+
+.sideBar-expand {
+  background-color: #2f2f2f;
+  color: white;
+  border: none;
+  font-size: 20px;
+}
+
+.fa-bars {
+  margin-top: 2px;
+  margin-right: 10px;
+  color: white;
+  font-size: 20px;
+}
+
+.user-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  right: 40px;
+  top: 45px;
+  background-color: #2f2f2f;
+  padding: 0 15px 15px 15px;
+  border-radius: 10px;
+  height: 80px;
+}
+
+.menu-item {
+  margin: 10px;
+  list-style: none;
+}
+.user-icon {
+  color: #3ea6ff;
+  position: absolute;
+  right: 120px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #3ea6ff;
+  background-color: #2f2f2f;
+}
+
+.logout {
+  right: 30px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

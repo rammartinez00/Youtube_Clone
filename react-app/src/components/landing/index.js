@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import "./index.css";
 import { getAllVideos } from "../../store/videos";
 import ReactPlayer from "react-player";
+import Sidebar from "../sidebar";
 
 const Landing = () => {
   const dispatch = useDispatch();
@@ -16,30 +17,27 @@ const Landing = () => {
     dispatch(getAllVideos());
   }, [dispatch]);
 
-  const vidStyle = {
-    width: 100,
-    height: 100,
-  };
-  // console.log(videoArr);
-
   return (
     <div>
+      <Sidebar />
       <div className="landing-content-box-1-container">
-        {videoArr.map((video) => (
-          <div className="landing-content-box-1" key={video.id}>
-            <NavLink to={`/videos/${video.id}`}>
+        {videoArr?.map((video) => (
+          <div className="landing-content-box-1" key={video?.id}>
+            <NavLink to={`/videos/${video?.id}`}>
               <ReactPlayer
-                width="100%"
-                height="100%"
+                width="300px"
+                height="200px"
+                backgroundColor="black"
                 className="landing-content-box-1-img"
                 url={video?.video}
-                style={vidStyle}
-                // light={true}
+                // style={vidStyle}
+                // light={video?.thumbnail}
               />
             </NavLink>
-            <a className="vid-title" href={`/videos/${video.id}`}>
-              <p className="vid-title">{video.title}</p>
+            <a className="vid-title" href={`/videos/${video?.id}`}>
+              <p className="vid-title">{video?.title}</p>
             </a>
+            <p className="vid-title">{video?.user?.username}</p>
           </div>
         ))}
       </div>

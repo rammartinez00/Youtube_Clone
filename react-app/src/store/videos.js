@@ -130,7 +130,7 @@ const videoReducer = (state = [], action) => {
       return newState;
     case DELETE_VIDEO:
       newState = { ...state };
-      delete newState[action.video.video.id];
+      delete newState[action.video.id];
       return newState;
     default:
       return state;

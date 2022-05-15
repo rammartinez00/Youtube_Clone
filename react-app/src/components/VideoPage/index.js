@@ -11,7 +11,7 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 import NewCommentForm from "../NewComment";
 import EditCommentForm from "../EditComment";
-// import "./index.css";
+import "./index.css";
 
 const VideoPage = () => {
   const dispatch = useDispatch();
@@ -37,7 +37,8 @@ const VideoPage = () => {
     dispatch(getAllComments(id));
     dispatch(getAllVideos());
   }, [dispatch, update]);
-
+  const date = video?.created_at?.split(" ").slice(0, 4).join(" ");
+  // console.log(date);
   return (
     <div>
       <div className="video-page-container">
@@ -50,14 +51,11 @@ const VideoPage = () => {
             />
           </div>
           <div className="video-page-container-1-2">
-            <h1>{video?.title}</h1>
-            <button
-              onClick={() => {
-                setShown(!shown);
-              }}
-            >
-              {shown ? "show less" : "show more"}
-            </button>
+            <div className="vid-title-info">
+              <h2>{video?.title}</h2>
+              <h5>{date}</h5>
+            </div>
+
             {shown && (
               <div>
                 <h2>{video?.about}</h2>
@@ -77,12 +75,20 @@ const VideoPage = () => {
                 )}
               </div>
             )}
+            <button
+              className="about-button"
+              onClick={() => {
+                setShown(!shown);
+              }}
+            >
+              {shown ? "show less" : "show more"}
+            </button>
           </div>
           <div className="comments-section">
-            <h1>Comments</h1>
+            <h1>{commentsArr?.length}&nbsp; Comments</h1>
             {user && <NewCommentForm />}
             {/* <NewCommentForm /> */}
-            {commentsArr?.map((comment) => (
+            {commentsArr?.reverse()?.map((comment) => (
               <div className="comment-container" key={comment.id}>
                 <div className="comment-container-1">
                   {comment?.userId === user?.id && (
