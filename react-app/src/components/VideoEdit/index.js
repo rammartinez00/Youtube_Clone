@@ -11,7 +11,7 @@ function EditVideoModal() {
     <>
       <button className="btn" onClick={() => setShowModal(true)}>
         <FontAwesomeIcon icon={faPen} />
-        Edit Video Details
+        &nbsp;Edit Video Details
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

@@ -38,6 +38,7 @@ const VideoPage = () => {
     dispatch(getAllVideos());
   }, [dispatch, update]);
   const date = video?.created_at?.split(" ").slice(0, 4).join(" ");
+
   // console.log(date);
   return (
     <div>
@@ -58,18 +59,20 @@ const VideoPage = () => {
 
             {shown && (
               <div>
-                <h2>{video?.about}</h2>
+                <h4>{video?.about}</h4>
                 {user?.id == video?.userId && (
                   <div>
                     <EditVideoModal />
                     <button
+                      className="btn delete-btn"
                       onClick={() => {
                         dispatch(deleteAVideo(video?.id));
                         setUpdate(!update);
                         history.push("/");
                       }}
                     >
-                      Delete Video
+                      <i className="fa-solid fa-trash-can"></i>
+                      &nbsp;Delete Video
                     </button>
                   </div>
                 )}
@@ -91,25 +94,36 @@ const VideoPage = () => {
             {commentsArr?.reverse()?.map((comment) => (
               <div className="comment-container" key={comment.id}>
                 <div className="comment-container-1">
+                  <div className="comment-content">
+                    <p>{comment?.comment}</p>
+                    <p>
+                      {comment?.updated_at?.split(" ").slice(0, 4).join(" ")}
+                    </p>
+                  </div>
                   {comment?.userId === user?.id && (
-                    <>
-                      <button
-                        onClick={() => {
-                          setEditShown(!editShown);
-                        }}
-                      >
-                        <FontAwesomeIcon icon={faPen} />
-                      </button>
-                      {editShown && <EditCommentForm comments={comment} />}
-                      <button
-                        onClick={() => {
-                          setDeleteShown(!deleteShown);
-                        }}
-                      >
-                        <i className="fa-solid fa-trash-can"></i>
-                      </button>
+                    <div>
+                      <div className="comment-btns">
+                        <button
+                          className="btn edit-btn"
+                          onClick={() => {
+                            setEditShown(!editShown);
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faPen} />
+                        </button>
+                        {editShown && <EditCommentForm comments={comment} />}
+                        <button
+                          className="btn del-btn"
+                          onClick={() => {
+                            setDeleteShown(!deleteShown);
+                          }}
+                        >
+                          <i className="fa-solid fa-trash-can"></i>
+                        </button>
+                      </div>
                       {deleteShown && (
                         <button
+                          className="btn del-btn2"
                           onClick={() => {
                             dispatch(deleteAComment(comment.id));
                             dispatch(getAllComments(id));
@@ -118,11 +132,8 @@ const VideoPage = () => {
                           Delete Comment
                         </button>
                       )}
-                    </>
+                    </div>
                   )}
-                  {/* <EditCommentForm comment={comment} /> */}
-                  <p>{comment?.comment}</p>
-                  <p>{comment?.updated_at}</p>
                 </div>
               </div>
             ))}

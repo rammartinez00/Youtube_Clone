@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { postNewComment } from "../../store/comments";
 
+import "./index.css";
+
 const NewCommentForm = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const history = useHistory();
 
   const user = useSelector((state) => state.session.user);
-  console.log(user);
 
   const [comment, setComment] = useState("");
   const [validationErrors, setValidationErrors] = useState([]);
@@ -54,13 +55,16 @@ const NewCommentForm = () => {
       )}
       <form onSubmit={handleSubmit}>
         <input
+          className="new-comment-input"
           type="text"
           name="comment"
           placeholder="Comment here"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         ></input>
-        <button type="submit">Submit</button>
+        <button className="new-comment-button" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );

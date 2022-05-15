@@ -42,7 +42,7 @@ const EditCommentForm = ({ comments }) => {
   };
 
   return (
-    <div className="new-comment-form-container">
+    <div className="new-comment-form-container edit">
       {showErrors && (
         <div className="new-comment-form-errors">
           {validationErrors.map((error) => (
@@ -52,13 +52,16 @@ const EditCommentForm = ({ comments }) => {
       )}
       <form onSubmit={handleSubmit}>
         <input
+          className="new-comment-input"
           type="text"
           name="comment"
           placeholder="Comment here"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
         ></input>
-        <button type="submit">Submit Edit</button>
+        <button className="new-comment-button" type="submit">
+          Submit
+        </button>
       </form>
     </div>
   );
