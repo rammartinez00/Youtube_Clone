@@ -11,7 +11,7 @@ function LoginFormModal() {
     <>
       <button className="btn" onClick={() => setShowModal(true)}>
         <FontAwesomeIcon icon={faUser} />
-        Sign in
+        &nbsp; Sign in
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

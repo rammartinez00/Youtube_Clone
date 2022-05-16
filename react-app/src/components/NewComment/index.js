@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { postNewComment } from "../../store/comments";
 
 import "./index.css";
@@ -8,7 +8,6 @@ import "./index.css";
 const NewCommentForm = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const history = useHistory();
 
   const user = useSelector((state) => state.session.user);
 
@@ -38,9 +37,11 @@ const NewCommentForm = () => {
     if (validationErrors.length === 0) {
       let postComment;
       postComment = await dispatch(postNewComment(id, newComment));
-      setComment("");
-      setValidationErrors([]);
-      setShowErrors(false);
+      if (postComment) {
+        setComment("");
+        setValidationErrors([]);
+        setShowErrors(false);
+      }
     }
   };
 

@@ -1,14 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+// import { useParams, useHistory } from "react-router-dom";
 import { updateComment } from "../../store/comments";
 
 const EditCommentForm = ({ comments }) => {
   const dispatch = useDispatch();
-  const { id } = useParams();
-  const history = useHistory();
-  //   const comments = useSelector((state) => state.comments);
-  const user = useSelector((state) => state.session.user);
+
+  // const user = useSelector((state) => state.session.user);
 
   const [comment, setComment] = useState(comments?.comment);
   const [validationErrors, setValidationErrors] = useState([]);
@@ -36,8 +34,10 @@ const EditCommentForm = ({ comments }) => {
       let updatedComment;
       updatedComment = await dispatch(updateComment(editComment));
       // setComment("");
-      setValidationErrors([]);
-      setShowErrors(false);
+      if (updatedComment) {
+        setValidationErrors([]);
+        setShowErrors(false);
+      }
     }
   };
 

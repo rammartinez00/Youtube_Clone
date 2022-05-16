@@ -5,6 +5,8 @@ import "./index.css";
 
 import { postVideoAction } from "../../store/videos";
 
+import { ReactComponent as GoogleLogo } from "../../img/Google.svg";
+
 const UploadVideo = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const UploadVideo = () => {
 
   useEffect(() => {
     const errors = [];
+    const fileTypes = ["mp4", "3gp", "mov", "m4a", "m4v"];
     if (!title) {
       errors.push("Title is required");
     }
@@ -26,6 +29,9 @@ const UploadVideo = () => {
     }
     if (!video) {
       errors.push("Video is required");
+    }
+    if (!fileTypes.includes(video?.name?.split(".").pop())) {
+      errors.push("file type is not supported");
     }
     setValidationErrors(errors);
   }, [title, about, video]);
@@ -42,16 +48,16 @@ const UploadVideo = () => {
       video,
     };
 
-    // if (validationErrors.length === 0) {
-    await dispatch(postVideoAction(videoData));
-    history.push("/");
-    //   setAbout("");
-    //   setTitle("");
-    //   setVideo(null);
-    //   setVideoLoading(false);
-    //   setHasSubmitted(false);
-    //   setShowErrors(false);
-    // }
+    if (validationErrors.length === 0) {
+      await dispatch(postVideoAction(videoData));
+      history.push("/");
+      //   setAbout("");
+      //   setTitle("");
+      //   setVideo(null);
+      setVideoLoading(false);
+      //   setHasSubmitted(false);
+      //   setShowErrors(false);
+    }
   };
   const updateVideo = (e) => {
     const file = e.target.files[0];
@@ -60,7 +66,9 @@ const UploadVideo = () => {
 
   return (
     <form className="uploadForm" onSubmit={handleSubmit}>
-      <div>
+      <GoogleLogo />
+      <h2>Video Upload</h2>
+      <div className="upload-errors">
         {showErrors && (
           <ul className="errors">
             {validationErrors.map((error, index) => (
@@ -70,18 +78,33 @@ const UploadVideo = () => {
         )}
       </div>
       <input
-        type="text"
-        name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        className="file-input"
+        type="file"
+        name="file"
+        onChange={updateVideo}
       />
-      <textarea
-        name="about"
-        value={about}
-        onChange={(e) => setAbout(e.target.value)}
-      />
-      <input type="file" name="file" onChange={updateVideo} />
-      <button type="submit">Submit</button>
+      <div>
+        <label htmlFor="title">Title &nbsp;</label>
+        <input
+          className="upload-input"
+          type="text"
+          name="title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="about">about&nbsp;</label>
+        <textarea
+          className="upload-input"
+          name="about"
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
+        />
+      </div>
+      <button type="submit" className="btn upload-btn">
+        Submit
+      </button>
       {videoLoading && <p>Loading...</p>}
     </form>
   );

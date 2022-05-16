@@ -4,6 +4,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import "./LoginForm.css";
 import { ReactComponent as GoogleLogo } from "../../img/Google.svg";
+import SignUpFormModal from "../SignUpModal";
 
 const LoginForm = ({ prop }) => {
   const [errors, setErrors] = useState([]);
@@ -41,7 +42,7 @@ const LoginForm = ({ prop }) => {
   }
 
   return (
-    <div className="modal-form-container">
+    <div className="modal-form-container edit-video">
       <GoogleLogo />
       <div>
         <p className="sign-in">Sign in</p>
@@ -79,21 +80,19 @@ const LoginForm = ({ prop }) => {
                 Login
               </button>
             </div>
+
             <button
               className="demo-btn"
               onClick={() => {
-                history.push("/sign-up");
+                demoLogin();
                 prop.setShowModal(false);
               }}
             >
-              Create account
+              Demo Login
             </button>
           </div>
         </div>
       </form>
-      <button className="modal-btn" onClick={demoLogin}>
-        Demo Login
-      </button>
     </div>
   );
 };

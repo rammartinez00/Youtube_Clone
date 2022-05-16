@@ -1,28 +1,32 @@
 import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
-import EditVideo from "./editVideo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import SignUpForm from "./SignUpForm";
 
-function EditVideoModal() {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import "./index.css";
+
+function SignUpFormModal() {
   const [showModal, setShowModal] = useState(false);
   const prop = { showModal, setShowModal };
   return (
     <>
       <button
-        className="btn video-edit-button"
-        onClick={() => setShowModal(true)}
+        className="btn signup-btn"
+        onClick={() => {
+          setShowModal(true);
+        }}
       >
-        <FontAwesomeIcon icon={faPen} />
-        &nbsp;Edit Video Details
+        <FontAwesomeIcon icon={faUser} />
+        &nbsp; Create Account
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditVideo prop={prop} />
+          <SignUpForm />
         </Modal>
       )}
     </>
   );
 }
 
-export default EditVideoModal;
+export default SignUpFormModal;

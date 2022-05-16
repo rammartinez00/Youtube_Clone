@@ -4,7 +4,8 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import LoginFormModal from "./LoginFormModal/index.js";
 import Logo from "../img/yt_logo_rgb_dark.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SignUpFormModal from "./SignUpModal";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavBar = () => {
   const user = useSelector((state) => state.session.user);
@@ -29,9 +30,14 @@ const NavBar = () => {
           </NavLink>
         </li>
         {!user && (
-          <li>
-            <LoginFormModal />
-          </li>
+          <>
+            <li>
+              <SignUpFormModal />
+            </li>
+            <li>
+              <LoginFormModal />
+            </li>
+          </>
         )}
         {user && (
           <>

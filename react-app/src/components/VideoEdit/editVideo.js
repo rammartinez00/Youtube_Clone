@@ -1,17 +1,18 @@
-import { faDiagnoses } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import "./index.css";
+
+import { ReactComponent as GoogleLogo } from "../../img/Google.svg";
 
 import { getAllVideos, updateAVideo, getVideoById } from "../../store/videos";
 
 const EditVideo = ({ prop }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const { id } = useParams();
 
-  const user = useSelector((state) => state.session.user);
+  // const user = useSelector((state) => state.session.user);
   const videos = useSelector((state) => state.videos);
 
   const this_video = videos[id];
@@ -29,7 +30,7 @@ const EditVideo = ({ prop }) => {
   useEffect(() => {
     dispatch(getAllVideos());
     dispatch(getVideoById(id));
-  }, [dispatch, prop.showModal]);
+  }, [dispatch, prop.showModal, id]);
 
   useEffect(() => {
     const errors = [];
@@ -63,29 +64,43 @@ const EditVideo = ({ prop }) => {
   };
 
   return (
-    <form className="uploadForm" onSubmit={handleSubmit}>
-      <div>
-        {showErrors && (
-          <ul className="errors">
-            {validationErrors.map((error, index) => (
-              <li key={index}>{error}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <input
-        type="text"
-        name="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        name="about"
-        value={about}
-        onChange={(e) => setAbout(e.target.value)}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="modal-form-container  edit-video">
+      <GoogleLogo />
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          {showErrors && (
+            <ul className="errors">
+              {validationErrors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div className="login-container">
+          <input
+            placeholder="Video Title"
+            className="login-input"
+            type="text"
+            name="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="login-container">
+          <textarea
+            placeholder="Video Description"
+            className="login-input"
+            name="about"
+            value={about}
+            onChange={(e) => setAbout(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="video-edit-btn">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

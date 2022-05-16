@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import ReactPlayer from "react-player";
 import { useEffect, useState } from "react";
-import { NavLink, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { getVideoById, deleteAVideo, getAllVideos } from "../../store/videos";
 import { getAllComments, deleteAComment } from "../../store/comments";
 import EditVideoModal from "../VideoEdit";
@@ -36,7 +36,7 @@ const VideoPage = () => {
     dispatch(getVideoById(id));
     dispatch(getAllComments(id));
     dispatch(getAllVideos());
-  }, [dispatch, update]);
+  }, [dispatch, update, id]);
   const date = video?.created_at?.split(" ").slice(0, 4).join(" ");
 
   // console.log(date);
@@ -111,7 +111,6 @@ const VideoPage = () => {
                         >
                           <FontAwesomeIcon icon={faPen} />
                         </button>
-                        {editShown && <EditCommentForm comments={comment} />}
                         <button
                           className="btn del-btn"
                           onClick={() => {
@@ -120,18 +119,19 @@ const VideoPage = () => {
                         >
                           <i className="fa-solid fa-trash-can"></i>
                         </button>
+                        {deleteShown && (
+                          <button
+                            className="btn del-btn2"
+                            onClick={() => {
+                              dispatch(deleteAComment(comment.id));
+                              dispatch(getAllComments(id));
+                            }}
+                          >
+                            Delete Comment
+                          </button>
+                        )}
                       </div>
-                      {deleteShown && (
-                        <button
-                          className="btn del-btn2"
-                          onClick={() => {
-                            dispatch(deleteAComment(comment.id));
-                            dispatch(getAllComments(id));
-                          }}
-                        >
-                          Delete Comment
-                        </button>
-                      )}
+                      {editShown && <EditCommentForm comments={comment} />}
                     </div>
                   )}
                 </div>
