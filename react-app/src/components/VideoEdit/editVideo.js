@@ -57,6 +57,7 @@ const EditVideo = ({ prop }) => {
     };
 
     await dispatch(updateAVideo(videoData));
+    await dispatch(getVideoById(id));
     setHasSubmitted(false);
     prop.setShowModal(!prop.showModal);
 
