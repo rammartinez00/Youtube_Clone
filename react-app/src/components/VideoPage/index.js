@@ -22,7 +22,6 @@ const VideoPage = () => {
   const [editShown, setEditShown] = useState(false);
   const [deleteShown, setDeleteShown] = useState(false);
   const [update, setUpdate] = useState(false);
-  // console.log(id);
 
   const videos = useSelector((state) => state.videos);
   const comments = useSelector((state) => state.comments);
@@ -30,7 +29,6 @@ const VideoPage = () => {
   const commentsArr = Object.values(comments);
 
   const user = useSelector((state) => state.session.user);
-  // console.log(commentsArr);
 
   useEffect(() => {
     dispatch(getVideoById(id));
@@ -90,7 +88,6 @@ const VideoPage = () => {
           <div className="comments-section">
             <h1>{commentsArr?.length}&nbsp; Comments</h1>
             {user && <NewCommentForm />}
-            {/* <NewCommentForm /> */}
             {commentsArr?.reverse()?.map((comment) => (
               <div className="comment-container" key={comment.id}>
                 <div className="comment-container-1">

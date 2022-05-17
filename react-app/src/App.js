@@ -11,6 +11,7 @@ import { authenticate } from "./store/session";
 import Landing from "./components/landing";
 import VideoPage from "./components/VideoPage";
 import UploadVideo from "./components/VideoUpload";
+import NotFound from "./components/404page";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -46,6 +47,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
+        <Route>
+          <NotFound />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
