@@ -12,6 +12,8 @@ import redux from "../img/redux.png";
 import react from "../img/react.png";
 import postgresql from "../img/postgresql.png";
 import house from "../img/house.png";
+import javascript from "../img/javascript.png";
+import flask from "../img/flask.png";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,6 +58,10 @@ const Sidebar = () => {
               python
             </li>
             <li className="sideBar-link">
+              <img src={javascript} width={logoSize}></img>
+              javascript
+            </li>
+            <li className="sideBar-link">
               <img src={AWS} width={logoSize} alt="logo" />
             </li>
             <li className="sideBar-link">
@@ -69,6 +75,9 @@ const Sidebar = () => {
             <li className="sideBar-link">
               <img src={postgresql} width={logoSize}></img>
               psql
+            </li>
+            <li>
+              <img src={flask} width={logoSize}></img>
             </li>
           </>
         )}

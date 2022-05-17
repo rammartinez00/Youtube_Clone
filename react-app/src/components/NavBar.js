@@ -29,6 +29,9 @@ const NavBar = () => {
             />
           </NavLink>
         </li>
+        <li>
+          <p className="credit">by Rami Martinez</p>
+        </li>
         {!user && (
           <>
             <li>

@@ -39,3 +39,9 @@
   align-items: center;
   text-align: center;
 }
+
+.credit {
+  margin: 0;
+  padding-top: 5px;
+  font-size: 12px;
+}
