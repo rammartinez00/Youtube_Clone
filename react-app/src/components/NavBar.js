@@ -15,9 +15,9 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <ul className="navlinks">
-        <li>
+        {/* <li>
           <i className="fa-solid fa-bars"></i>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/" exact={true} activeClassName="active">
             <img

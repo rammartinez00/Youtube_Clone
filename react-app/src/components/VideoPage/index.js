@@ -39,7 +39,7 @@ const VideoPage = () => {
   }, [dispatch, update, id]);
   const date = video?.created_at?.split(" ").slice(0, 4).join(" ");
 
-  // console.log(date);
+  const state = { editShown, setEditShown };
   return (
     <div>
       <div className="video-page-container">
@@ -55,27 +55,27 @@ const VideoPage = () => {
             <div className="vid-title-info">
               <h2>{video?.title}</h2>
               <h5>{date}</h5>
+              {user?.id == video?.userId && (
+                <div>
+                  <EditVideoModal />
+                  <button
+                    className="btn delete-btn"
+                    onClick={() => {
+                      dispatch(deleteAVideo(video?.id));
+                      setUpdate(!update);
+                      history.push("/");
+                    }}
+                  >
+                    <i className="fa-solid fa-trash-can"></i>
+                    &nbsp;Delete Video
+                  </button>
+                </div>
+              )}
             </div>
 
             {shown && (
               <div>
                 <h4>{video?.about}</h4>
-                {user?.id == video?.userId && (
-                  <div>
-                    <EditVideoModal />
-                    <button
-                      className="btn delete-btn"
-                      onClick={() => {
-                        dispatch(deleteAVideo(video?.id));
-                        setUpdate(!update);
-                        history.push("/");
-                      }}
-                    >
-                      <i className="fa-solid fa-trash-can"></i>
-                      &nbsp;Delete Video
-                    </button>
-                  </div>
-                )}
               </div>
             )}
             <button
@@ -95,6 +95,7 @@ const VideoPage = () => {
               <div className="comment-container" key={comment.id}>
                 <div className="comment-container-1">
                   <div className="comment-content">
+                    <p>{comment?.user?.username}</p>
                     <p>{comment?.comment}</p>
                     <p>
                       {comment?.updated_at?.split(" ").slice(0, 4).join(" ")}
@@ -106,7 +107,9 @@ const VideoPage = () => {
                         <button
                           className="btn edit-btn"
                           onClick={() => {
-                            setEditShown(!editShown);
+                            setEditShown(
+                              editShown == comment?.id ? "" : comment?.id
+                            );
                           }}
                         >
                           <FontAwesomeIcon icon={faPen} />
@@ -114,12 +117,14 @@ const VideoPage = () => {
                         <button
                           className="btn del-btn"
                           onClick={() => {
-                            setDeleteShown(!deleteShown);
+                            setDeleteShown(
+                              deleteShown == comment?.id ? "" : comment?.id
+                            );
                           }}
                         >
                           <i className="fa-solid fa-trash-can"></i>
                         </button>
-                        {deleteShown && (
+                        {deleteShown == comment?.id && (
                           <button
                             className="btn del-btn2"
                             onClick={() => {
@@ -131,7 +136,9 @@ const VideoPage = () => {
                           </button>
                         )}
                       </div>
-                      {editShown && <EditCommentForm comments={comment} />}
+                      {editShown == comment?.id && (
+                        <EditCommentForm comments={comment} state={state} />
+                      )}
                     </div>
                   )}
                 </div>

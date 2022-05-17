@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 // import { useParams, useHistory } from "react-router-dom";
 import { updateComment } from "../../store/comments";
 
-const EditCommentForm = ({ comments }) => {
+const EditCommentForm = ({ comments, state }) => {
   const dispatch = useDispatch();
 
   // const user = useSelector((state) => state.session.user);
@@ -37,6 +37,7 @@ const EditCommentForm = ({ comments }) => {
       if (updatedComment) {
         setValidationErrors([]);
         setShowErrors(false);
+        state.setEditShown(false);
       }
     }
   };
