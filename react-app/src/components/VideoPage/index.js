@@ -92,11 +92,9 @@ const VideoPage = () => {
               <div className="comment-container" key={comment.id}>
                 <div className="comment-container-1">
                   <div className="comment-content">
-                    <p>{comment?.user?.username}</p>
+                    <p>username: &nbsp;{comment?.user?.username}</p>
                     <p>{comment?.comment}</p>
-                    <p>
-                      {comment?.updated_at?.split(" ").slice(0, 4).join(" ")}
-                    </p>
+                    <p>{new Date(comment?.created_at)?.toDateString()}</p>
                   </div>
                   {comment?.userId === user?.id && (
                     <div>

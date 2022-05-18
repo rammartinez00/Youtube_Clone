@@ -56,12 +56,14 @@ const EditVideo = ({ prop }) => {
       about,
     };
 
-    await dispatch(updateAVideo(videoData));
-    await dispatch(getVideoById(id));
-    setHasSubmitted(false);
-    prop.setShowModal(!prop.showModal);
+    if (validationErrors.length === 0) {
+      await dispatch(updateAVideo(videoData));
+      await dispatch(getVideoById(id));
+      setHasSubmitted(false);
+      prop.setShowModal(!prop.showModal);
 
-    // history.push("/");
+      // history.push("/");
+    }
   };
 
   return (
