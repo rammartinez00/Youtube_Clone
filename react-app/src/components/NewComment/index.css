@@ -44,14 +44,14 @@
   margin-bottom: 20px;
   background-color: #212121;
   border-bottom: 2px solid #2f2f2f;
+  width: 600px;
 }
 
 .comment-btns {
   display: flex;
   flex-direction: row;
-  /* margin-top: 10px; */
-  /* margin-left: 200px; */
   background-color: #212121;
+  width: 100px;
 }
 
 .del-btn {

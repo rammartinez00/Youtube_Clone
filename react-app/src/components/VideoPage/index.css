@@ -19,18 +19,8 @@
   font-size: 14px;
 }
 
-.edit {
-  margin-left: 200px;
-  border-bottom: none;
-}
-
 .comment-content {
   width: 400px;
-}
-
-.video-edit-button {
-  position: relative;
-  margin-left: 100px;
 }
 
 .video-description {

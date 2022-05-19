@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getVideoById, deleteAVideo, getAllVideos } from "../../store/videos";
 import { getAllComments, deleteAComment } from "../../store/comments";
 import EditVideoModal from "../VideoEdit";
+import EditCommentModal from "../EditComment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
@@ -99,7 +100,7 @@ const VideoPage = () => {
                   {comment?.userId === user?.id && (
                     <div>
                       <div className="comment-btns">
-                        <button
+                        {/* <button
                           className="btn edit-btn"
                           onClick={() => {
                             setEditShown(
@@ -108,7 +109,8 @@ const VideoPage = () => {
                           }}
                         >
                           <FontAwesomeIcon icon={faPen} />
-                        </button>
+                        </button> */}
+                        <EditCommentModal comments={comment} />
                         <button
                           className="btn del-btn"
                           onClick={() => {
@@ -131,9 +133,9 @@ const VideoPage = () => {
                           </button>
                         )}
                       </div>
-                      {editShown == comment?.id && (
-                        <EditCommentForm comments={comment} state={state} />
-                      )}
+                      {/* {editShown == comment?.id && (
+                        <EditCommentForm comment={comment} state={state} />
+                      )} */}
                     </div>
                   )}
                 </div>

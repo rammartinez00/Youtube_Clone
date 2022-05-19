@@ -71,7 +71,7 @@ const EditVideo = ({ prop }) => {
 
   return (
     <div className="modal-form-container  edit-video">
-      <GoogleLogo />
+      {/* <GoogleLogo /> */}
 
       <form onSubmit={handleSubmit}>
         <div>

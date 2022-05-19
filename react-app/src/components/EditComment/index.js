@@ -1,70 +1,28 @@
-import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-// import { useParams, useHistory } from "react-router-dom";
-import { updateComment } from "../../store/comments";
+import React, { useState } from "react";
+import { Modal } from "../../context/Modal";
 
-const EditCommentForm = ({ comments, state }) => {
-  const dispatch = useDispatch();
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import EditCommentForm from "./editComment";
 
-  // const user = useSelector((state) => state.session.user);
-
-  const [comment, setComment] = useState(comments?.comment);
-  const [validationErrors, setValidationErrors] = useState([]);
-  const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [showErrors, setShowErrors] = useState(false);
-
-  useEffect(() => {
-    const errors = [];
-    if (comment?.length < 1) {
-      errors.push("edit must be at least 1 character long");
-    }
-    setValidationErrors(errors);
-  }, [comment]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setHasSubmitted(true);
-    setShowErrors(true);
-
-    const editComment = {
-      id: comments.id,
-      comment,
-    };
-    if (validationErrors.length === 0) {
-      let updatedComment;
-      updatedComment = await dispatch(updateComment(editComment));
-      // setComment("");
-      if (updatedComment) {
-        setValidationErrors([]);
-        setShowErrors(false);
-        state.setEditShown(false);
-      }
-    }
-  };
-
+function EditCommentModal({ comments }) {
+  const [showModal, setShowModal] = useState(false);
+  const prop = { showModal, setShowModal };
   return (
-    <div className="new-comment-form-container edit">
-      {showErrors && (
-        <div className="new-comment-form-errors">
-          {validationErrors.map((error) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
+    <>
+      <button
+        className="btn video-edit-button"
+        onClick={() => setShowModal(true)}
+      >
+        <FontAwesomeIcon icon={faPen} />
+      </button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <EditCommentForm prop={prop} comments={comments} />
+        </Modal>
       )}
-      <form onSubmit={handleSubmit}>
-        <input
-          className="new-comment-input"
-          type="text"
-          name="comment"
-          placeholder="Comment here"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-        ></input>
-        <button className="new-comment-button" type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
+    </>
   );
-};
-export default EditCommentForm;
+}
+
+export default EditCommentModal;
