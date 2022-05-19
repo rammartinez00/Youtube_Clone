@@ -24,6 +24,9 @@ const UploadVideo = () => {
     if (!title) {
       errors.push("Title is required");
     }
+    if (title.length > 100) {
+      errors.push("Title must be less than 100 characters");
+    }
     if (!about) {
       errors.push("About is required");
     }
@@ -38,7 +41,7 @@ const UploadVideo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setVideoLoading(true);
+
     setHasSubmitted(true);
     setShowErrors(true);
 
@@ -49,6 +52,7 @@ const UploadVideo = () => {
     };
 
     if (validationErrors.length === 0) {
+      setVideoLoading(true);
       await dispatch(postVideoAction(videoData));
       history.push("/");
       //   setAbout("");
@@ -66,7 +70,7 @@ const UploadVideo = () => {
 
   return (
     <form className="uploadForm" onSubmit={handleSubmit}>
-      <GoogleLogo />
+      {/* <GoogleLogo /> */}
       <h2>Video Upload</h2>
       <div className="upload-errors">
         {showErrors && (

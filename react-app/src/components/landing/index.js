@@ -27,7 +27,6 @@ const Landing = () => {
               <ReactPlayer
                 width="300px"
                 height="200px"
-                backgroundColor="black"
                 className="landing-content-box-1-img"
                 url={video?.video}
                 light={video?.thumbnail}

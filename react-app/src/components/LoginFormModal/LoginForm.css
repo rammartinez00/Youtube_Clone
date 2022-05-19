@@ -125,3 +125,10 @@
   position: absolute;
   right: 100px;
 }
+.errors {
+  text-align: center;
+  color: red;
+  list-style: none;
+  padding-left: 0px;
+  font-size: 14px;
+}

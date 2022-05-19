@@ -43,7 +43,7 @@ const LoginForm = ({ prop }) => {
 
   return (
     <div className="modal-form-container edit-video">
-      <GoogleLogo />
+      {/* <GoogleLogo /> */}
       <div>
         <p className="sign-in">Sign in</p>
         <p className="msg">to continue to Youtube</p>

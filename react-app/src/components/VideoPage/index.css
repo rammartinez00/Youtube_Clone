@@ -20,7 +20,7 @@
 }
 
 .edit {
-  margin-left: 100px;
+  margin-left: 200px;
   border-bottom: none;
 }
 
@@ -31,4 +31,31 @@
 .video-edit-button {
   position: relative;
   margin-left: 100px;
+}
+
+.video-description {
+  width: 600px;
+  height: 100px;
+  inline-size: 500px;
+}
+
+.desc-box {
+  width: 800px;
+  height: 200px;
+  inline-size: 700px;
+  overflow-wrap: break-word;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar-track {
+  background: #212121;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2f2f2f;
+  border-radius: 10px;
 }

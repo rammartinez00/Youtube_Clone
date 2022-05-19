@@ -72,8 +72,8 @@ const VideoPage = () => {
             </div>
 
             {shown && (
-              <div>
-                <h4>{video?.about}</h4>
+              <div className="desc-box">
+                <h4 className="video-description">{video?.about}</h4>
               </div>
             )}
             <button

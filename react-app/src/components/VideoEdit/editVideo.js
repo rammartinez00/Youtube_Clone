@@ -17,7 +17,7 @@ const EditVideo = ({ prop }) => {
 
   const this_video = videos[id];
 
-  console.log(this_video);
+  // console.log(this_video);
 
   const [title, setTitle] = useState(this_video?.title);
   const [about, setAbout] = useState(this_video?.about);
@@ -36,6 +36,9 @@ const EditVideo = ({ prop }) => {
     const errors = [];
     if (!title) {
       errors.push("Title is required");
+    }
+    if (title.length > 100) {
+      errors.push("Title must be less than 100 characters");
     }
     if (!about) {
       errors.push("About is required");
@@ -93,7 +96,7 @@ const EditVideo = ({ prop }) => {
         <div className="login-container">
           <textarea
             placeholder="Video Description"
-            className="login-input"
+            className="login-input video-about"
             name="about"
             value={about}
             onChange={(e) => setAbout(e.target.value)}

@@ -20,6 +20,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data);
       }
+    } else {
+      setErrors(["password: Passwords do not match."]);
     }
   };
 
@@ -45,13 +47,13 @@ const SignUpForm = () => {
 
   return (
     <div className="modal-form-container">
-      <GoogleLogo />
+      {/* <GoogleLogo /> */}
       <div>
         <p className="sign-in">Sign Up</p>
         <p className="msg">to continue to Youtube</p>
       </div>
       <form onSubmit={onSignUp}>
-        <div>
+        <div className="errors">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
