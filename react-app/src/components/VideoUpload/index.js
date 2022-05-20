@@ -18,6 +18,8 @@ const UploadVideo = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
+  console.log(video?.size > 10000000);
+
   useEffect(() => {
     const errors = [];
     const fileTypes = ["mp4", "3gp", "mov", "m4a", "m4v"];
@@ -32,6 +34,10 @@ const UploadVideo = () => {
     }
     if (!video) {
       errors.push("Video is required");
+    }
+    //435045249
+    if (video?.size > 10000000) {
+      errors.push("Video must be less than 10MB");
     }
     if (!fileTypes.includes(video?.name?.split(".").pop())) {
       errors.push("file type is not supported");
@@ -98,7 +104,7 @@ const UploadVideo = () => {
         />
       </div>
       <div>
-        <label htmlFor="about">about&nbsp;</label>
+        <label htmlFor="about">About&nbsp;</label>
         <textarea
           className="upload-input"
           name="about"

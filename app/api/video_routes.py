@@ -1,3 +1,4 @@
+from time import clock_getres
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Video, db
@@ -31,6 +32,7 @@ def upload():
             return jsonify({'errors': 'No file'}), 400
         
         video = request.files['video']
+        
 
         if not allowed_file(video.filename):
             return jsonify({'errors': 'File extension not allowed'}), 400

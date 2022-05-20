@@ -3,13 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 350px;
   height: 400px;
   background-color: rgb(65, 65, 65);
   position: relative;
   left: 40%;
   margin-top: 10%;
   border-radius: 10px;
+  text-align: center;
 }
 
 .upload-btn {

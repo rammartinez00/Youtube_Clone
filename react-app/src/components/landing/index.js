@@ -30,6 +30,9 @@ const Landing = () => {
                 className="landing-content-box-1-img"
                 url={video?.video}
                 light={video?.thumbnail}
+                // playIcon={false}
+                // autoplay={true}
+                // controls={true}
               />
             </NavLink>
             <a className="vid-title" href={`/videos/${video?.id}`}>
