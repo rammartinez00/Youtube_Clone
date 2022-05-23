@@ -14,4 +14,13 @@ This Youtube clone will be a pixel perfect clone of [Youtube](https://Youtube.co
 
 ## Technologies Used
 
-- TBD
+- Python
+- Flask
+- SqlAlchemy
+- alembic
+- AWS
+- Javascript
+- React
+- Redux
+- React-Player
+
