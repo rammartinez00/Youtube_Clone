@@ -5,6 +5,7 @@ import LogoutButton from "./auth/LogoutButton";
 import LoginFormModal from "./LoginFormModal/index.js";
 import Logo from "../img/yt_logo_rgb_dark.png";
 import SignUpFormModal from "./SignUpModal";
+import SearchBar from "./search";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavBar = () => {
@@ -32,6 +33,7 @@ const NavBar = () => {
         <li>
           <p className="credit">by Rami Martinez</p>
         </li>
+        <SearchBar />
         {!user && (
           <>
             <li>
