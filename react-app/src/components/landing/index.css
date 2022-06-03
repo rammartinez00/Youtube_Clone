@@ -5,6 +5,7 @@
   background-color: #2f2f2f;
   padding: 10px;
   padding-left: 20px;
+  align-items: center;
 }
 
 .navlinks > li {
@@ -92,7 +93,7 @@ body {
   align-items: center;
   position: absolute;
   right: 40px;
-  top: 45px;
+  top: 55px;
   background-color: #2f2f2f;
   padding: 0 15px 15px 15px;
   border-radius: 10px;
@@ -112,6 +113,7 @@ body {
   height: 30px;
   border: 2px solid #3ea6ff;
   background-color: #2f2f2f;
+  cursor: pointer;
 }
 
 .logout {

@@ -34,7 +34,7 @@
   overflow-y: scroll;
   z-index: 99;
   color: white;
-  min-width: 270px;
+  min-width: 370px;
   max-width: 280px;
 }
 
@@ -52,11 +52,12 @@
 }
 
 .search-bar-input {
-  width: 300px;
+  width: 400px;
   height: 30px;
   background-color: #212121;
   color: #ababab;
-  border-radius: 10px;
+  font-weight: lighter;
+  /* border-radius: 10px; */
 }
 .search-bar-input:focus {
   outline: none;

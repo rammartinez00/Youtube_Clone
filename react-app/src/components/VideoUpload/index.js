@@ -77,7 +77,7 @@ const UploadVideo = () => {
   return (
     <form className="uploadForm" onSubmit={handleSubmit}>
       {/* <GoogleLogo /> */}
-      <h2>Video Upload</h2>
+      <h2 className="upload-title">Upload Videos</h2>
       <div className="upload-errors">
         {showErrors && (
           <ul className="errors">
@@ -93,8 +93,10 @@ const UploadVideo = () => {
         name="file"
         onChange={updateVideo}
       />
-      <div>
-        <label htmlFor="title">Title &nbsp;</label>
+      <div className="upload-div">
+        <label className="upload-div" htmlFor="title">
+          Title &nbsp;
+        </label>
         <input
           className="upload-input"
           type="text"
@@ -103,8 +105,10 @@ const UploadVideo = () => {
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
-      <div>
-        <label htmlFor="about">About&nbsp;</label>
+      <div className="upload-div">
+        <label className="upload-label" htmlFor="about">
+          About&nbsp;
+        </label>
         <textarea
           className="upload-input"
           name="about"
@@ -113,7 +117,7 @@ const UploadVideo = () => {
         />
       </div>
       <button type="submit" className="btn upload-btn">
-        Submit
+        SUBMIT
       </button>
       {videoLoading && <p>Loading...</p>}
     </form>

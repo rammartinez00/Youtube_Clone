@@ -38,7 +38,7 @@ def upload():
             return jsonify({'errors': 'File extension not allowed'}), 400
 
         video.filename = get_unique_filename(video.filename)
-
+        
         upload = upload_file_to_s3(video)
 
         if 'url' not in upload:
