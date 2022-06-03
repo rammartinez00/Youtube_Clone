@@ -45,14 +45,17 @@ const SearchBar = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </form>
-      {search != "" && (
+      {search && (
         <div className="search-result">
           <ul className="searchresult-list">
             {filteredList.map((video) => (
               <li
                 key={video.id}
                 value={video.title}
-                onClick={() => history.push(`/videos/${video[2]}`)}
+                onClick={() => {
+                  history.push(`/videos/${video[2]}`);
+                  setSearch("");
+                }}
               >
                 {video[0]}
               </li>

@@ -30,7 +30,7 @@
   border-radius: 10px;
   box-shadow: 3px 3px 4px rgb(66, 66, 66);
   list-style: none;
-  height: 210px;
+  height: auto;
   overflow-y: scroll;
   z-index: 99;
   color: white;

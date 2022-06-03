@@ -18,7 +18,7 @@ const UploadVideo = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
-  console.log(video?.size > 10000000);
+  // console.log(video?.size > 10000000);
 
   useEffect(() => {
     const errors = [];
