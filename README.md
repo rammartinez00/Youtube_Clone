@@ -1,6 +1,8 @@
-# 🎥 Youtube Clone 🎥
+# 🎥 Youtube Clone 🎥 [Live Site](https://youtube-vtwo.herokuapp.com/)
 
 This Youtube clone will be a pixel perfect clone of [Youtube](https://Youtube.com). Users can log in to view their favorite videos, subscribe to other users, post their own videos, comment, on videos and like videos. 
+
+[![Image from Gyazo](https://i.gyazo.com/6eea66f03d4b5abc89c85646acc94cad.gif)](https://gyazo.com/6eea66f03d4b5abc89c85646acc94cad)
 
 ## Features 
 
