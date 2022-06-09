@@ -1,14 +1,14 @@
 .video-page-container-1 {
   /* padding-left: 50px;
   padding-top: 20px; */
-  margin-left: 20%;
+  margin-left: 10%;
   margin-top: 3%;
 }
 
 .vid-title-info {
   border-bottom: 2px solid #2f2f2f;
   /* background-color: blue; */
-  width: 700px;
+  width: 80%;
   height: 130px;
 }
 
@@ -48,4 +48,22 @@
 ::-webkit-scrollbar-thumb {
   background: #2f2f2f;
   border-radius: 10px;
+}
+
+.video-admin-btns {
+  display: flex;
+  /* margin-left: 100px; */
+}
+
+.video-admin-btns > button {
+  position: relative;
+  margin: 10px;
+  margin-left: 0;
+  padding: 5px 11px;
+  border: 1px solid #3ea6ff;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #3ea6ff;
+  background-color: transparent;
+  height: 30px;
 }

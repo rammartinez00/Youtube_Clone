@@ -124,3 +124,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+.video-poster {
+  display: flex;
+  flex-direction: row;
+}

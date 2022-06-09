@@ -91,6 +91,7 @@ const UploadVideo = () => {
         className="file-input"
         type="file"
         name="file"
+        accept="video/*"
         onChange={updateVideo}
       />
       <div className="upload-div">

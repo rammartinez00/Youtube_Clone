@@ -48,17 +48,20 @@ const VideoPage = () => {
               url={video?.video}
               controls={true}
               light={video?.thumbnail}
+              width="80%"
+              height="20%"
             />
           </div>
           <div className="video-page-container-1-2">
             <div className="vid-title-info">
-              <h2>{video?.title}</h2>
-              <h5>{date}</h5>
+              <h4 style={{ color: "#f6f3ee", margin: 0, marginTop: 10 }}>
+                {video?.title}
+              </h4>
+              <p style={{ fontSize: 12, color: "#f6f3ee" }}>{date}</p>
               {user?.id == video?.userId && (
-                <div>
+                <div className="video-admin-btns">
                   <EditVideoModal />
                   <button
-                    className="btn delete-btn"
                     onClick={() => {
                       dispatch(deleteAVideo(video?.id));
                       setUpdate(!update);

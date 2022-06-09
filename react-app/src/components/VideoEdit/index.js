@@ -9,10 +9,7 @@ function EditVideoModal() {
   const prop = { showModal, setShowModal };
   return (
     <>
-      <button
-        className="btn video-edit-button"
-        onClick={() => setShowModal(true)}
-      >
+      <button onClick={() => setShowModal(true)}>
         <FontAwesomeIcon icon={faPen} />
         &nbsp;Edit Video Details
       </button>
