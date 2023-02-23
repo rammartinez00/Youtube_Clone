@@ -49,7 +49,7 @@ const VideoPage = () => {
               controls={true}
               light={video?.thumbnail}
               width="80%"
-              height="20%"
+              height="600px"
             />
           </div>
           <div className="video-page-container-1-2">
